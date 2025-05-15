@@ -1,0 +1,29 @@
+services:
+    db:
+        image: postgres:alpine
+        environment:
+            POSTGRES_USER: devuser
+            POSTGRES_PASSWORD: devpass
+            POSTGRES_DB: devdb
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+    app:
+        image: lyric-logic:v3
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            - DB_HOST=db
+            - DB_NAME=devdb
+            - DB_USER=devuser
+            - DB_PASSWORD=devpass
+        ports:
+            - "8000:80"
+        depends_on:
+            - db
+
+volumes:
+    postgres_data:

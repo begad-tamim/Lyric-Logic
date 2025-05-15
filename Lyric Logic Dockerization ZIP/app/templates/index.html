@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Prediction App</title>
+    <link rel="stylesheet" href="/static/style/style.css">
+    <link rel="icon" href="/static/images/notes.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Lyric Logic App 🎶</h1>
+        <p>Made By: <a href="https://www.linkedin.com/in/begad-tamim/">Begad Tamim</a></p>
+        <p>Enter some lyrics and we'll predict the artist!</p>
+        <br>
+        <form method="post">
+            <select name="model_name">
+                <option value="cnn_glove">CNN with GloVe</option>
+                <option value="cnn_learned">CNN with Learned Embeddings</option>
+                <option value="lstm_learned">LSTM with Learned Embeddings</option>
+            </select>
+            <textarea name="lyrics" cols="10" rows="10"></textarea>
+            <input type="submit">
+        </form>
+        <div class="result-container">
+            <p> {{ result }}</p>
+            <img src="{{ artist_image }}" alt="Artist Image">
+        </div>
+    </div>
+</body>
+
+
+</html>
